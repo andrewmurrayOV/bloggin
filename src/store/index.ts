@@ -11,8 +11,7 @@ export default new Vuex.Store({
   },
   mutations: {
     getPosts(state, posts: Post[]) {
-      state.posts = posts;
-      console.log(state.posts)
+      state.posts = posts
     }
   },
   actions: {

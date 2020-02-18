@@ -2,7 +2,7 @@
   <div>
     <h1>PaRTY</h1>
     <ul>
-      <li v-for="post of posts" :key="post.id">{{ post.title }}</li>
+      <li v-for="post of Posts" :key="post.id">{{ post.title }}</li>
     </ul>
   </div>
 </template>
@@ -16,19 +16,14 @@ import { Post } from "@/interfaces/Post";
   components: {}
 })
 export default class Posts extends Vue {
-  private posts: Post[];
-  constructor() {
-    super();
-    this.posts = [];
+
+  get  Posts(): Post[] {
+    return this.$store.state.posts
   }
 
-  async created() {
-    try {
-      this.posts = await this.$store.dispatch("getPosts");
-      console.log(this.posts)
-    } catch (error) {
-      console.error(error);
-    }
+
+   created() {
+     this.$store.dispatch('getPosts')
   }
 }
 </script>
